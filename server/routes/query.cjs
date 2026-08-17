@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { queryAsync } = require('../config/db');
-const { verifyToken } = require('../middleware/auth');
-const { checkPermission } = require('../middleware/rbac');
-const { ALLOWED_FIELDS, sanitizePayload, validateRequired } = require('../middleware/validation');
+const { queryAsync } = require('../config/db.cjs');
+const { verifyToken } = require('../middleware/auth.cjs');
+const { checkPermission } = require('../middleware/rbac.cjs');
+const { ALLOWED_FIELDS, sanitizePayload, validateRequired } = require('../middleware/validation.cjs');
 
 router.post('/', verifyToken, checkPermission, async (req, res) => {
   const { table, action, filters, payload, sortConfig, isSingle } = req.body;

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { verifyToken } = require('../middleware/auth');
-const { upload } = require('../config/multer');
+const { verifyToken } = require('../middleware/auth.cjs');
+const { upload } = require('../config/multer.cjs');
 
 router.post('/foto-balita', verifyToken, upload.single('foto'), async (req, res) => {
   try {

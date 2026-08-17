@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { queryAsync } = require('../config/db');
-const { verifyToken } = require('../middleware/auth');
-const { checkPermission } = require('../middleware/rbac');
+const { queryAsync } = require('../config/db.cjs');
+const { verifyToken } = require('../middleware/auth.cjs');
+const { checkPermission } = require('../middleware/rbac.cjs');
 
 router.get('/jadwal', async (req, res) => {
   try {

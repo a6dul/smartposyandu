@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Base URL mengarah ke server Node.js lokal kita
 const api = axios.create({
-  baseURL: 'http://localhost:3001/api',
+  baseURL: '/api',
   headers: {
     'Content-Type': 'application/json',
   },

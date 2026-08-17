@@ -3,8 +3,8 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const { db, queryAsync } = require('../config/db');
-const { verifyToken, JWT_SECRET, JWT_EXPIRES, BCRYPT_ROUNDS } = require('../middleware/auth');
+const { db, queryAsync } = require('../config/db.cjs');
+const { verifyToken, JWT_SECRET, JWT_EXPIRES, BCRYPT_ROUNDS } = require('../middleware/auth.cjs');
 
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;

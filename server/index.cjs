@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
@@ -8,14 +9,14 @@ app.use(cors());
 app.use(express.json({ limit: '10kb' })); // Batasi ukuran request body
 
 // Serve uploaded files statically
-const { uploadsDir } = require('./config/multer');
+const { uploadsDir } = require('./config/multer.cjs');
 app.use('/uploads', express.static(uploadsDir));
 
 // Routes
-const authRoutes = require('./routes/auth');
-const queryRoutes = require('./routes/query');
-const uploadRoutes = require('./routes/upload');
-const publicRoutes = require('./routes/public');
+const authRoutes = require('./routes/auth.cjs');
+const queryRoutes = require('./routes/query.cjs');
+const uploadRoutes = require('./routes/upload.cjs');
+const publicRoutes = require('./routes/public.cjs');
 
 // Mount routes
 app.use('/api/auth', authRoutes);
