@@ -186,27 +186,27 @@ const Riwayat = () => {
 
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-2">
         <div>
-          <h3 className="text-headline-lg font-bold text-on-surface">Riwayat Kesehatan Anak</h3>
-          <p className="text-body-lg text-on-surface-variant">Pantau riwayat penimbangan dan perkembangan anak secara berkala.</p>
+          <h2 className="text-title-lg font-bold text-on-surface">Riwayat Kesehatan Anak</h2>
+          <p className="text-sm text-on-surface-variant mt-0.5">Pantau riwayat penimbangan dan perkembangan anak secara berkala.</p>
         </div>
-        <div className="flex items-center gap-2 text-sm text-on-surface-variant font-bold">
-          <span className="material-symbols-outlined text-[18px]">info</span>
-          {filtered.length} catatan ditemukan
+        <div className="flex items-center gap-2 text-xs text-on-surface-variant font-bold">
+          <span className="material-symbols-outlined text-[16px]">info</span>
+          {filtered.length} catatan
         </div>
       </div>
 
-      <div className="bg-surface-container-lowest p-4 lg:p-6 rounded-2xl shadow-sm border border-outline-variant">
-        <div className="flex flex-col md:flex-row gap-4 items-center">
+      <div className="bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-outline-variant">
+        <div className="flex flex-col md:flex-row gap-3 items-center">
           <div className="relative flex-1 w-full">
-            <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+            <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
             <input value={search} onChange={e => setSearch(e.target.value)}
-              className="w-full h-[56px] pl-12 pr-4 rounded-xl border-2 border-outline-variant focus:border-primary outline-none text-body-md transition-all bg-surface"
+              className="w-full h-11 pl-10 pr-4 rounded-xl border-2 border-outline-variant focus:border-primary outline-none text-sm transition-all bg-surface"
               placeholder="Cari nama anak..." />
           </div>
           <button
             onClick={() => setSortDesc(p => !p)}
-            className="h-[56px] w-full md:w-auto px-6 border-2 border-outline-variant rounded-xl flex items-center justify-center gap-2 hover:bg-surface-container transition-colors text-on-surface-variant font-bold">
-            <span className="material-symbols-outlined">{sortDesc ? 'arrow_downward' : 'arrow_upward'}</span>
+            className="h-11 w-full md:w-auto px-5 border-2 border-outline-variant rounded-xl flex items-center justify-center gap-2 hover:bg-surface-container transition-colors text-on-surface-variant text-sm font-bold">
+            <span className="material-symbols-outlined text-[18px]">{sortDesc ? 'arrow_downward' : 'arrow_upward'}</span>
             {sortDesc ? 'Terbaru' : 'Terlama'}
           </button>
         </div>

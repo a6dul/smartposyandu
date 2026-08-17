@@ -81,8 +81,8 @@ const Profile = () => {
       {toast && <Toast message={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
       
       <header className="mb-6 lg:mb-10 flex flex-col gap-2 pt-4 lg:pt-0">
-        <h2 className="text-headline-md font-bold text-on-background tracking-tight">Profil Saya</h2>
-        <p className="text-body-lg text-on-surface-variant">Kelola informasi personal dan keamanan akun Anda.</p>
+        <h2 className="text-title-lg font-bold text-on-background">Profil Saya</h2>
+        <p className="text-sm text-on-surface-variant">Kelola informasi personal dan keamanan akun Anda.</p>
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -103,7 +103,7 @@ const Profile = () => {
                   type="email"
                   value={profile.email}
                   readOnly
-                  className="w-full h-[56px] lg:h-[64px] pl-12 pr-4 bg-surface-variant/30 rounded-xl border border-outline-variant text-body-md text-on-surface-variant cursor-not-allowed"
+                  className="w-full h-12 pl-12 pr-4 bg-surface-variant/30 rounded-xl border border-outline-variant text-sm text-on-surface-variant cursor-not-allowed"
                 />
               </div>
             </div>
@@ -116,7 +116,7 @@ const Profile = () => {
                   type="text"
                   value={profile.role?.replace('_', ' ')}
                   readOnly
-                  className="w-full h-[56px] lg:h-[64px] pl-12 pr-4 bg-surface-variant/30 rounded-xl border border-outline-variant text-body-md text-on-surface-variant capitalize cursor-not-allowed"
+                  className="w-full h-12 pl-12 pr-4 bg-surface-variant/30 rounded-xl border border-outline-variant text-sm text-on-surface-variant capitalize cursor-not-allowed"
                 />
               </div>
             </div>
@@ -131,7 +131,7 @@ const Profile = () => {
                   required
                   value={profileForm.nama_lengkap}
                   onChange={handleProfileChange}
-                  className="w-full h-[56px] lg:h-[64px] pl-12 pr-4 bg-surface rounded-xl border-2 border-outline-variant focus:border-primary outline-none transition-all text-body-md"
+                  className="w-full h-12 pl-12 pr-4 bg-surface rounded-xl border-2 border-outline-variant focus:border-primary outline-none transition-all text-sm"
                 />
               </div>
             </div>
@@ -145,7 +145,7 @@ const Profile = () => {
                   name="telepon"
                   value={profileForm.telepon}
                   onChange={handleProfileChange}
-                  className="w-full h-[56px] lg:h-[64px] pl-12 pr-4 bg-surface rounded-xl border-2 border-outline-variant focus:border-primary outline-none transition-all text-body-md"
+                  className="w-full h-12 pl-12 pr-4 bg-surface rounded-xl border-2 border-outline-variant focus:border-primary outline-none transition-all text-sm"
                 />
               </div>
             </div>
@@ -153,7 +153,7 @@ const Profile = () => {
             <button
               type="submit"
               disabled={loadingProfile}
-              className="mt-2 h-[56px] bg-primary text-on-primary rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all disabled:opacity-50"
+              className="mt-2 h-11 bg-primary text-on-primary rounded-xl text-sm font-bold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all disabled:opacity-50"
             >
               {loadingProfile ? <span className="material-symbols-outlined animate-spin">sync</span> : <span className="material-symbols-outlined">save</span>}
               Simpan Profil
@@ -179,7 +179,7 @@ const Profile = () => {
                   required
                   value={passwordForm.password_lama}
                   onChange={handlePasswordChange}
-                  className="w-full h-[56px] lg:h-[64px] pl-12 pr-4 bg-surface rounded-xl border-2 border-outline-variant focus:border-error outline-none transition-all text-body-md"
+                  className="w-full h-12 pl-12 pr-4 bg-surface rounded-xl border-2 border-outline-variant focus:border-error outline-none transition-all text-sm"
                 />
               </div>
             </div>
@@ -195,7 +195,7 @@ const Profile = () => {
                   minLength="6"
                   value={passwordForm.password_baru}
                   onChange={handlePasswordChange}
-                  className="w-full h-[56px] lg:h-[64px] pl-12 pr-4 bg-surface rounded-xl border-2 border-outline-variant focus:border-error outline-none transition-all text-body-md"
+                  className="w-full h-12 pl-12 pr-4 bg-surface rounded-xl border-2 border-outline-variant focus:border-error outline-none transition-all text-sm"
                 />
               </div>
             </div>
@@ -211,7 +211,7 @@ const Profile = () => {
                   minLength="6"
                   value={passwordForm.confirm_password}
                   onChange={handlePasswordChange}
-                  className="w-full h-[56px] lg:h-[64px] pl-12 pr-4 bg-surface rounded-xl border-2 border-outline-variant focus:border-error outline-none transition-all text-body-md"
+                  className="w-full h-12 pl-12 pr-4 bg-surface rounded-xl border-2 border-outline-variant focus:border-error outline-none transition-all text-sm"
                 />
               </div>
             </div>
@@ -219,7 +219,7 @@ const Profile = () => {
             <button
               type="submit"
               disabled={loadingPassword}
-              className="mt-2 h-[56px] bg-error text-on-error rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-error/90 transition-all disabled:opacity-50"
+              className="mt-2 h-11 bg-error text-on-error rounded-xl text-sm font-bold flex items-center justify-center gap-2 hover:bg-error/90 transition-all disabled:opacity-50"
             >
               {loadingPassword ? <span className="material-symbols-outlined animate-spin">sync</span> : <span className="material-symbols-outlined">password</span>}
               Ganti Password

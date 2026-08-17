@@ -133,8 +133,8 @@ const DetailBalita = () => {
           {!isOrangTua && (
             <Dropdown
               trigger={
-                <button className="flex items-center justify-center gap-2 px-4 py-3 bg-surface border-2 border-outline-variant text-on-surface-variant rounded-xl font-bold shadow-sm hover:bg-surface-container-high transition-all">
-                  <span className="material-symbols-outlined">edit</span>
+                <button className="h-11 px-5 bg-surface border-2 border-outline-variant text-on-surface-variant rounded-xl text-sm font-bold shadow-sm hover:bg-surface-container-high transition-all flex items-center justify-center gap-2">
+                  <span className="material-symbols-outlined text-[18px]">edit</span>
                   Kelola
                   <span className="material-symbols-outlined text-[18px]">arrow_drop_down</span>
                 </button>

@@ -60,7 +60,7 @@ const PeriodeModal = ({ defaultBulan, defaultTipe, onClose, onGenerate }) => {
       <div className="space-y-2">
         <label className="text-sm font-bold text-on-surface">Pilih Bulan</label>
         <select value={bulan} onChange={e => setBulan(e.target.value)}
-          className="w-full h-14 px-4 rounded-xl border-2 border-outline-variant focus:border-primary outline-none bg-surface text-body-md transition-all">
+          className="w-full h-12 px-4 rounded-xl border-2 border-outline-variant focus:border-primary outline-none bg-surface text-sm transition-all">
           {bulanOptions.map(b => <option key={b} value={b}>{b}</option>)}
         </select>
       </div>
@@ -76,8 +76,8 @@ const PeriodeModal = ({ defaultBulan, defaultTipe, onClose, onGenerate }) => {
         </div>
       </div>
       <button onClick={() => onGenerate(bulan, tipe)}
-        className="w-full h-14 rounded-xl bg-primary text-on-primary font-bold hover:bg-primary/90 active:scale-95 transition-all shadow-md flex items-center justify-center gap-2">
-        <span className="material-symbols-outlined">picture_as_pdf</span>
+        className="w-full h-11 rounded-xl bg-primary text-on-primary text-sm font-bold hover:bg-primary/90 active:scale-95 transition-all shadow-md flex items-center justify-center gap-2">
+        <span className="material-symbols-outlined text-[18px]">picture_as_pdf</span>
         Generate &amp; Cetak
       </button>
     </div>
@@ -403,15 +403,15 @@ const Laporan = () => {
       {/* Title */}
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-4 px-1 mb-6">
         <div>
-          <h2 className="text-headline-lg font-bold text-on-background">Rekapitulasi Laporan</h2>
-          <p className="text-body-lg text-on-surface-variant">Otomatisasi data kesehatan bulanan untuk {posyanduInfo.nama_posyandu}.</p>
+          <h2 className="text-title-lg font-bold text-on-background">Rekapitulasi Laporan</h2>
+          <p className="text-sm text-on-surface-variant mt-0.5">Otomatisasi data kesehatan bulanan untuk {posyanduInfo.nama_posyandu}.</p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <button onClick={handleExcelExport} className="min-h-touch-target-min flex items-center justify-center gap-2 px-6 bg-secondary text-on-secondary rounded-xl font-bold hover:bg-secondary/90 active:scale-95 transition-all shadow-sm">
-            <span className="material-symbols-outlined">file_download</span>Export Excel
+          <button onClick={handleExcelExport} className="h-11 flex items-center justify-center gap-2 px-5 bg-secondary text-on-secondary rounded-xl text-sm font-bold hover:bg-secondary/90 active:scale-95 transition-all shadow-sm">
+            <span className="material-symbols-outlined text-[18px]">file_download</span>Export Excel
           </button>
-          <button onClick={() => setModal('cetak')} className="min-h-touch-target-min flex items-center justify-center gap-2 px-6 bg-primary text-on-primary rounded-xl font-bold hover:bg-primary/90 active:scale-95 transition-all shadow-md">
-            <span className="material-symbols-outlined">picture_as_pdf</span>Cetak Laporan PDF
+          <button onClick={() => setModal('cetak')} className="h-11 flex items-center justify-center gap-2 px-5 bg-primary text-on-primary rounded-xl text-sm font-bold hover:bg-primary/90 active:scale-95 transition-all shadow-md">
+            <span className="material-symbols-outlined text-[18px]">picture_as_pdf</span>Cetak Laporan PDF
           </button>
         </div>
       </section>
@@ -420,12 +420,12 @@ const Laporan = () => {
         {/* Filter Panel */}
         <div className="lg:col-span-4 space-y-6">
           <div className="bg-surface-container-lowest p-6 lg:p-8 rounded-xl shadow-sm border border-outline-variant space-y-6">
-            <h3 className="text-headline-md font-bold">Filter Laporan</h3>
+            <h3 className="text-title-md font-bold text-on-surface">Filter Laporan</h3>
             <div className="space-y-4">
               <div className="space-y-2">
-                <label className="text-label-lg font-bold text-on-surface">Pilih Bulan</label>
+                <label className="text-xs font-bold text-on-surface-variant">Pilih Bulan</label>
                 <select value={bulanAktif} onChange={e => setBulanAktif(e.target.value)}
-                  className="w-full h-touch-target-min bg-surface-container rounded-lg border-2 border-transparent focus:border-secondary transition-all px-4 outline-none">
+                  className="w-full h-12 text-sm bg-surface-container rounded-lg border-2 border-transparent focus:border-secondary transition-all px-4 outline-none">
                   {bulanOptions.map(b => <option key={b} value={b}>{b}</option>)}
                 </select>
               </div>

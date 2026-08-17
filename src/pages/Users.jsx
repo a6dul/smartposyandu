@@ -18,44 +18,42 @@ const FormPengguna = ({ data, onClose, onSave }) => {
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
   const handleSubmit = (e) => { e.preventDefault(); onSave(form); };
 
+  const inputCls = "w-full h-12 px-4 rounded-xl border-2 border-outline-variant focus:border-primary outline-none text-sm bg-surface transition-all";
+  const labelCls = "text-xs font-bold text-on-surface-variant";
   return (
     <form onSubmit={handleSubmit} className="space-y-4 pb-2">
       <div className="space-y-1">
-        <label className="text-sm font-bold text-on-surface">Nama Lengkap *</label>
-        <input name="nama_lengkap" value={form.nama_lengkap} onChange={handleChange} required
-          className="w-full h-14 px-4 rounded-xl border-2 border-outline-variant focus:border-primary outline-none text-body-md bg-surface transition-all" />
+        <label className={labelCls}>Nama Lengkap *</label>
+        <input name="nama_lengkap" value={form.nama_lengkap} onChange={handleChange} required className={inputCls} />
       </div>
       <div className="space-y-1">
-        <label className="text-sm font-bold text-on-surface">Email *</label>
+        <label className={labelCls}>Email *</label>
         <input name="email" type="email" value={form.email} onChange={handleChange} required disabled={!!data}
-          className="w-full h-14 px-4 rounded-xl border-2 border-outline-variant focus:border-primary outline-none text-body-md bg-surface transition-all disabled:opacity-50" />
+          className={`${inputCls} disabled:opacity-50`} />
       </div>
       {!data && (
         <div className="space-y-1">
-          <label className="text-sm font-bold text-on-surface">Password Sementara *</label>
-          <input name="password" type="password" value={form.password} onChange={handleChange} required
-            className="w-full h-14 px-4 rounded-xl border-2 border-outline-variant focus:border-primary outline-none text-body-md bg-surface transition-all" />
+          <label className={labelCls}>Password Sementara *</label>
+          <input name="password" type="password" value={form.password} onChange={handleChange} required className={inputCls} />
         </div>
       )}
       <div className="space-y-1">
-        <label className="text-sm font-bold text-on-surface">Nomor HP</label>
-        <input name="telepon" type="tel" value={form.telepon} onChange={handleChange} placeholder="0812..."
-          className="w-full h-14 px-4 rounded-xl border-2 border-outline-variant focus:border-primary outline-none text-body-md bg-surface transition-all" />
+        <label className={labelCls}>Nomor HP</label>
+        <input name="telepon" type="tel" value={form.telepon} onChange={handleChange} placeholder="0812..." className={inputCls} />
       </div>
       <div className="space-y-1">
-        <label className="text-sm font-bold text-on-surface">Role / Peran</label>
-        <select name="role" value={form.role} onChange={handleChange}
-          className="w-full h-14 px-4 rounded-xl border-2 border-outline-variant focus:border-primary outline-none text-body-md bg-surface transition-all">
+        <label className={labelCls}>Role / Peran</label>
+        <select name="role" value={form.role} onChange={handleChange} className={inputCls}>
           <option value="orang_tua">Orang Tua</option>
           <option value="kader">Kader / Bidan</option>
           <option value="administrator">Administrator</option>
         </select>
       </div>
-      <div className="flex gap-3 pt-4">
+      <div className="flex gap-3 pt-3">
         <button type="button" onClick={onClose}
-          className="flex-1 h-14 rounded-xl border-2 border-outline-variant text-on-surface-variant font-bold hover:bg-surface-container-high transition-colors">Batal</button>
+          className="flex-1 h-11 rounded-xl border-2 border-outline-variant text-on-surface-variant text-sm font-bold hover:bg-surface-container-high transition-colors">Batal</button>
         <button type="submit"
-          className="flex-1 h-14 rounded-xl bg-primary text-on-primary font-bold hover:bg-primary/90 transition-all shadow-md">
+          className="flex-1 h-11 rounded-xl bg-primary text-on-primary text-sm font-bold hover:bg-primary/90 transition-all shadow-sm">
           {data ? 'Simpan Perubahan' : 'Tambah Pengguna'}
         </button>
       </div>
@@ -153,8 +151,8 @@ const Users = () => {
 
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h3 className="text-headline-lg font-bold text-on-surface">Manajemen Sistem</h3>
-          <p className="text-body-lg text-on-surface-variant">Kelola akses pengguna dan pantau aktivitas sistem Posyandu.</p>
+          <h2 className="text-title-lg font-bold text-on-surface">Manajemen Sistem</h2>
+          <p className="text-sm text-on-surface-variant mt-0.5">Kelola akses pengguna dan pantau aktivitas sistem Posyandu.</p>
         </div>
       </div>
 
@@ -173,16 +171,16 @@ const Users = () => {
         <div className="space-y-4">
           <div className="bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-outline-variant flex flex-col md:flex-row gap-4 items-center justify-between">
             <div className="relative flex-1 w-full max-w-md">
-              <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+              <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
               <input value={search} onChange={e => setSearch(e.target.value)}
-                className="w-full h-12 pl-12 pr-4 rounded-xl border-2 border-outline-variant focus:border-primary outline-none text-body-md transition-all bg-surface"
+                className="w-full h-11 pl-10 pr-4 rounded-xl border-2 border-outline-variant focus:border-primary outline-none text-sm transition-all bg-surface"
                 placeholder="Cari nama atau email..." />
             </div>
-            <button onClick={() => setModal('tambah')}
-              className="w-full md:w-auto h-12 px-6 rounded-xl bg-primary text-on-primary font-bold hover:bg-primary/90 transition-all shadow-md flex items-center justify-center gap-2">
-              <span className="material-symbols-outlined">person_add</span>
-              Tambah Pengguna
-            </button>
+              <button onClick={() => { setModal('tambah'); setSelectedUser(null); }}
+                className="h-11 px-5 border-2 border-transparent bg-primary text-on-primary rounded-xl flex items-center justify-center gap-2 hover:bg-primary/90 transition-all font-bold text-sm shadow-sm">
+                <span className="material-symbols-outlined text-[18px]">add</span>
+                Tambah Pengguna
+              </button>
           </div>
 
           <div className="bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant overflow-hidden">

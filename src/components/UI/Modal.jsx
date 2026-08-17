@@ -51,7 +51,7 @@ const Modal = ({ isOpen, onClose, title, children, size = 'md' }) => {
         <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-outline-variant/40 shrink-0">
           {/* Drag Handle (Mobile) */}
           <div className="absolute top-3 left-1/2 -translate-x-1/2 w-10 h-1 bg-outline-variant rounded-full sm:hidden" />
-          <h2 className="text-headline-md font-bold text-on-surface">{title}</h2>
+          <h2 className="text-title-md font-bold text-on-surface">{title}</h2>
           <button
             onClick={onClose}
             className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high text-on-surface-variant transition-colors shrink-0"

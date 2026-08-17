@@ -143,8 +143,8 @@ const Settings = () => {
           <div className="flex items-center gap-4">
             <span className="material-symbols-outlined text-[44px] text-primary">settings</span>
             <div>
-              <h1 className="text-headline-lg font-bold text-on-background">Pengaturan SmartPosyandu</h1>
-              <p className="text-body-md text-on-surface-variant mt-2 max-w-2xl">Sesuaikan preferensi tampilan, notifikasi, dan informasi Posyandu Anda.</p>
+              <h1 className="text-title-lg font-bold text-on-background">Pengaturan SmartPosyandu</h1>
+              <p className="text-sm text-on-surface-variant mt-1 max-w-2xl">Sesuaikan preferensi tampilan, notifikasi, dan informasi Posyandu Anda.</p>
             </div>
           </div>
           <Link className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-white transition hover:bg-primary/90 font-bold shadow-md" to="/dashboard">

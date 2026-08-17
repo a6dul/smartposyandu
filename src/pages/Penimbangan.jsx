@@ -170,9 +170,9 @@ const Penimbangan = () => {
 
       <div className="mb-6 lg:mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="relative z-10 lg:static bg-gradient-to-br from-primary to-[#005230] lg:bg-none p-6 lg:p-0 rounded-2xl lg:rounded-none text-on-primary-container lg:text-on-surface shadow-md lg:shadow-none overflow-hidden lg:overflow-visible">
-          <p className="text-label-lg opacity-90 text-white/80 lg:hidden">Formulir Pengukuran</p>
-          <h2 className="text-headline-lg font-bold mt-1 text-white lg:text-on-surface">Pencatatan Hasil Penimbangan</h2>
-          <p className="text-body-md mt-2 opacity-80 text-white/90 lg:text-on-surface-variant">Masukkan data pengukuran rutin balita untuk memantau tumbuh kembang.</p>
+          <p className="text-xs font-bold opacity-90 text-white/80 lg:hidden">Formulir Pengukuran</p>
+          <h2 className="text-title-lg font-bold mt-1 text-white lg:text-on-surface">Pencatatan Hasil Penimbangan</h2>
+          <p className="text-sm mt-2 opacity-80 text-white/90 lg:text-on-surface-variant">Masukkan data pengukuran rutin balita untuk memantau tumbuh kembang.</p>
         </div>
       </div>
 
@@ -188,16 +188,16 @@ const Penimbangan = () => {
       <div className="bg-surface-container-lowest rounded-2xl lg:rounded-xl p-5 lg:p-8 shadow-sm border border-outline-variant">
         <form onSubmit={handleSubmit} className="flex flex-col gap-5 lg:gap-8">
           <div className="flex flex-col gap-2">
-            <label className="text-[14px] lg:text-label-lg font-semibold text-on-surface px-1">Nama Balita *</label>
+            <label className="text-xs font-semibold text-on-surface px-1">Nama Balita *</label>
             {/* Combobox: searchable dropdown */}
             <div className="relative" ref={comboRef}>
               <div
                 onClick={() => setComboOpen(o => !o)}
-                className={`w-full min-h-[56px] lg:min-h-[64px] px-4 pl-12 pr-10 bg-surface rounded-xl border-2 flex items-center cursor-pointer transition-all ${
+                className={`w-full min-h-[48px] h-12 px-4 pl-12 pr-10 bg-surface rounded-xl border-2 flex items-center cursor-pointer text-sm transition-all ${
                   comboOpen ? 'border-secondary' : 'border-outline-variant'
                 }`}
               >
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">person</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">person</span>
                 <span className={`text-body-md ${selectedBalitaObj ? 'font-bold text-on-surface' : 'text-on-surface-variant'}`}>
                   {selectedBalitaObj
                     ? <>{sudahTimbangIds.has(selectedBalitaObj.id) && <span className="text-primary font-bold mr-1">✓</span>}{selectedBalitaObj.nama_lengkap} <span className="text-on-surface-variant font-normal text-sm">(Ibu: {selectedBalitaObj.nama_ibu})</span></>
@@ -263,16 +263,16 @@ const Penimbangan = () => {
                   placeholder="0.0"
                   value={form.berat_badan}
                   onChange={handleChange}
-                  className="w-full h-[56px] lg:h-[64px] pl-10 lg:pl-12 pr-10 lg:pr-12 bg-surface rounded-xl border-2 border-outline-variant focus:border-secondary focus:ring-0 text-body-md transition-all"
+                  className="w-full h-12 pl-10 pr-10 bg-surface rounded-xl border-2 border-outline-variant focus:border-secondary focus:ring-0 text-sm transition-all"
                 />
-                <span className="absolute right-3 lg:right-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-bold">kg</span>
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm font-bold">kg</span>
               </div>
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-[14px] lg:text-label-lg font-semibold text-on-surface px-1">Tinggi Badan (cm) *</label>
+              <label className="text-xs font-semibold text-on-surface px-1">Tinggi Badan (cm) *</label>
               <div className="relative">
-                <span className="absolute left-3 lg:left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">straighten</span>
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">straighten</span>
                 <input
                   name="tinggi_badan"
                   type="number"
@@ -281,44 +281,44 @@ const Penimbangan = () => {
                   placeholder="0.0"
                   value={form.tinggi_badan}
                   onChange={handleChange}
-                  className="w-full h-[56px] lg:h-[64px] pl-10 lg:pl-12 pr-10 lg:pr-12 bg-surface rounded-xl border-2 border-outline-variant focus:border-secondary focus:ring-0 text-body-md transition-all"
+                  className="w-full h-12 pl-10 pr-10 bg-surface rounded-xl border-2 border-outline-variant focus:border-secondary focus:ring-0 text-sm transition-all"
                 />
-                <span className="absolute right-3 lg:right-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-bold">cm</span>
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm font-bold">cm</span>
               </div>
             </div>
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-[14px] lg:text-label-lg font-semibold text-on-surface px-1">Status Gizi *</label>
+            <label className="text-xs font-semibold text-on-surface px-1">Status Gizi *</label>
             <div className="relative">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">monitoring</span>
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">monitoring</span>
               <input
                 type="text"
                 name="status_gizi"
                 value={form.status_gizi}
                 readOnly
                 placeholder="Otomatis terisi setelah input BB & TB"
-                className={`w-full h-[56px] lg:h-[64px] pl-12 pr-4 bg-surface rounded-xl border-2 transition-all text-body-md font-bold 
+                className={`w-full h-12 pl-12 pr-4 bg-surface rounded-xl border-2 transition-all text-sm font-bold 
                   ${!form.status_gizi ? 'border-outline-variant text-on-surface-variant' :
                     form.status_gizi === 'Baik' ? 'border-primary text-primary bg-primary/5' :
                     form.status_gizi === 'Buruk' ? 'border-error text-error bg-error/10' :
                     'border-secondary text-secondary bg-secondary/10'}`}
               />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline pointer-events-none">auto_awesome</span>
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline pointer-events-none text-[20px]">auto_awesome</span>
             </div>
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-[14px] lg:text-label-lg font-semibold text-on-surface px-1">Catatan Tambahan</label>
+            <label className="text-xs font-semibold text-on-surface px-1">Catatan Tambahan</label>
             <div className="relative">
-              <span className="absolute left-4 top-4 lg:top-5 material-symbols-outlined text-outline">edit_note</span>
+              <span className="absolute left-4 top-4 lg:top-3 material-symbols-outlined text-outline text-[20px]">edit_note</span>
               <textarea
                 name="catatan"
                 rows="3"
                 value={form.catatan}
                 onChange={handleChange}
                 placeholder="Catatan perkembangan balita..."
-                className="w-full p-4 pl-12 bg-surface rounded-xl border-2 border-outline-variant focus:border-secondary focus:ring-0 text-body-md transition-all"
+                className="w-full p-3 pl-12 bg-surface rounded-xl border-2 border-outline-variant focus:border-secondary focus:ring-0 text-sm transition-all"
               />
             </div>
           </div>
@@ -327,9 +327,9 @@ const Penimbangan = () => {
             <button
               type="submit"
               disabled={loading || !form.id_balita}
-              className="w-full lg:flex-1 h-[56px] lg:h-[64px] bg-primary text-on-primary font-bold rounded-xl hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-3 shadow-md disabled:opacity-50"
+              className="w-full lg:flex-1 h-11 bg-primary text-on-primary text-sm font-bold rounded-xl hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-50"
             >
-              <span className="material-symbols-outlined">save</span>
+              <span className="material-symbols-outlined text-[18px]">save</span>
               {loading ? 'Menyimpan...' : 'Simpan Data Penimbangan'}
             </button>
           </div>

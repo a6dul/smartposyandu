@@ -47,8 +47,8 @@ const FormIbuHamil = ({ data, onClose, onSave }) => {
   };
   const handleSubmit = (e) => { e.preventDefault(); onSave(form); };
 
-  const inputClass = "w-full h-14 px-4 rounded-xl border-2 border-outline-variant focus:border-secondary outline-none text-body-md bg-surface transition-all";
-  const labelClass = "text-sm font-bold text-on-surface";
+  const inputClass = "w-full h-12 px-4 rounded-xl border-2 border-outline-variant focus:border-secondary outline-none text-sm bg-surface transition-all";
+  const labelClass = "text-xs font-bold text-on-surface-variant";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 pb-2">
@@ -114,7 +114,7 @@ const FormIbuHamil = ({ data, onClose, onSave }) => {
       <div className="space-y-1">
         <label className={labelClass}>Alamat Lengkap</label>
         <textarea name="alamat" value={form.alamat} onChange={handleChange} rows={2}
-          className="w-full px-4 py-3 rounded-xl border-2 border-outline-variant focus:border-secondary outline-none text-body-md bg-surface transition-all resize-none"
+          className="w-full px-4 py-3 rounded-xl border-2 border-outline-variant focus:border-secondary outline-none text-sm bg-surface transition-all resize-none"
           placeholder="Alamat lengkap..." />
       </div>
       <div className="flex items-center gap-2 pt-1">
@@ -305,12 +305,12 @@ const IbuHamil = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-2">
         <div>
-          <h3 className="text-headline-lg font-bold text-on-surface">Data Ibu Hamil</h3>
-          <p className="text-body-lg text-on-surface-variant">Pemantauan kehamilan dan kunjungan ANC terpadu.</p>
+          <h2 className="text-title-lg font-bold text-on-surface">Data Ibu Hamil</h2>
+          <p className="text-sm text-on-surface-variant mt-0.5">Pemantauan kehamilan dan kunjungan ANC terpadu.</p>
         </div>
         <button onClick={() => setModal('tambah')}
-          className="bg-secondary text-on-secondary font-bold px-8 py-3 rounded-xl flex items-center justify-center gap-2 shadow-md hover:bg-secondary/90 active:scale-95 transition-all h-touch-target-min">
-          <span className="material-symbols-outlined">pregnant_woman</span>
+          className="bg-secondary text-on-secondary text-sm font-bold px-5 h-11 rounded-xl flex items-center justify-center gap-2 shadow-sm hover:bg-secondary/90 active:scale-95 transition-all whitespace-nowrap">
+          <span className="material-symbols-outlined text-[18px]">pregnant_woman</span>
           Tambah Data
         </button>
       </div>
@@ -337,16 +337,16 @@ const IbuHamil = () => {
       {/* Search & Filter */}
       <div className="bg-surface-container-lowest p-4 lg:p-6 rounded-2xl shadow-sm border border-outline-variant">
         <div className="flex flex-col md:flex-row gap-3">
-          <div className="relative flex-1">
-            <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+          <div className="relative flex-1 w-full">
+            <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
             <input value={search} onChange={e => setSearch(e.target.value)}
-              className="w-full h-[56px] pl-12 pr-4 rounded-xl border-2 border-outline-variant focus:border-secondary outline-none text-body-md transition-all bg-surface"
+              className="w-full h-11 pl-10 pr-4 rounded-xl border-2 border-outline-variant focus:border-secondary outline-none text-sm transition-all bg-surface"
               placeholder="Cari nama atau NIK..." />
           </div>
           <div className="flex gap-2 flex-wrap">
             {['Semua', 'Normal', 'Risiko Tinggi'].map(r => (
               <button key={r} onClick={() => setFilterRisiko(r)}
-                className={`px-4 h-[56px] rounded-xl border-2 font-bold text-sm transition-all ${filterRisiko === r ? 'border-secondary bg-secondary text-on-secondary' : 'border-outline-variant text-on-surface-variant hover:bg-surface-container'}`}>
+                className={`px-4 h-11 rounded-xl border-2 font-bold text-sm transition-all ${filterRisiko === r ? 'border-secondary bg-secondary text-on-secondary' : 'border-outline-variant text-on-surface-variant hover:bg-surface-container'}`}>
                 {r}
               </button>
             ))}
