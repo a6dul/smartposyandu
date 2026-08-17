@@ -301,7 +301,7 @@ const Dashboard = () => {
 
   // Fetch latest notif for preview card
   useEffect(() => {
-    fetch('http://localhost:3001/api/public/notifikasi')
+    fetch('/api/public/notifikasi')
       .then(r => r.json())
       .then(json => { if (json.data && json.data.length > 0) setLatestNotif(json.data[0]); })
       .catch(() => {});
@@ -428,28 +428,28 @@ const Dashboard = () => {
           <div className="flex flex-col gap-stack-gap">
             <div className="bg-surface-container-lowest p-6 rounded-xl shadow-[0_4px_12px_rgba(0,106,64,0.06)] border border-outline-variant">
               <h5 className="text-headline-md font-bold text-on-surface mb-6">Aksi Cepat</h5>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-3">
                 {!isOrangTua ? (
                   <>
-                    <Link to="/dashboard/data-balita" className="w-full h-touch-target-min bg-primary text-on-primary rounded-xl font-bold flex items-center justify-center gap-3 active:scale-95 hover:bg-primary/95 transition-all shadow-md group">
-                      <span className="material-symbols-outlined group-hover:rotate-12 transition-transform">add_circle</span>
+                    <Link to="/dashboard/data-balita" className="w-full h-11 bg-primary text-on-primary rounded-xl font-bold flex items-center justify-center gap-2 text-sm active:scale-95 hover:bg-primary/95 transition-all shadow-sm group">
+                      <span className="material-symbols-outlined text-[20px] group-hover:rotate-12 transition-transform">add_circle</span>
                       Tambah Balita
                     </Link>
-                    <Link to="/dashboard/penimbangan" className="w-full h-touch-target-min border-2 border-primary text-primary rounded-xl font-bold flex items-center justify-center gap-3 active:scale-95 hover:bg-surface-container-low transition-all group">
-                      <span className="material-symbols-outlined group-hover:scale-110 transition-transform">scale</span>
+                    <Link to="/dashboard/penimbangan" className="w-full h-11 border-2 border-primary text-primary rounded-xl font-bold flex items-center justify-center gap-2 text-sm active:scale-95 hover:bg-surface-container-low transition-all group">
+                      <span className="material-symbols-outlined text-[20px] group-hover:scale-110 transition-transform">scale</span>
                       Input Timbangan
                     </Link>
                   </>
                 ) : (
-                  <Link to="/dashboard/riwayat" className="w-full h-touch-target-min bg-primary text-on-primary rounded-xl font-bold flex items-center justify-center gap-3 active:scale-95 hover:bg-primary/95 transition-all shadow-md group">
-                    <span className="material-symbols-outlined group-hover:rotate-12 transition-transform">history</span>
+                  <Link to="/dashboard/riwayat" className="w-full h-11 bg-primary text-on-primary rounded-xl font-bold flex items-center justify-center gap-2 text-sm active:scale-95 hover:bg-primary/95 transition-all shadow-sm group">
+                    <span className="material-symbols-outlined text-[20px] group-hover:rotate-12 transition-transform">history</span>
                     Lihat Riwayat Anak
                   </Link>
                 )}
                 <button
                   onClick={() => setModal('jadwal')}
-                  className="w-full h-touch-target-min border-2 border-outline text-on-surface-variant rounded-xl font-bold flex items-center justify-center gap-3 active:scale-95 hover:bg-surface-container-low transition-all group">
-                  <span className="material-symbols-outlined group-hover:translate-x-0.5 transition-transform">event</span>
+                  className="w-full h-11 border-2 border-outline text-on-surface-variant rounded-xl font-bold flex items-center justify-center gap-2 text-sm active:scale-95 hover:bg-surface-container-low transition-all group">
+                  <span className="material-symbols-outlined text-[20px] group-hover:translate-x-0.5 transition-transform">event</span>
                   Jadwal Layanan
                 </button>
               </div>

@@ -346,7 +346,7 @@ const Laporan = () => {
   useEffect(() => {
     const fetchSKDN = async () => {
       try {
-        const setRes = await fetch('http://localhost:3001/api/public/pengaturan');
+        const setRes = await fetch('/api/public/pengaturan');
         const setJson = await setRes.json();
         if (setJson.data) setPosyanduInfo(setJson.data);
 
@@ -355,7 +355,7 @@ const Laporan = () => {
         const monthNum = bulanMap[parts[0]];
         const yearNum = parseInt(parts[1]);
 
-        const res = await fetch(`http://localhost:3001/api/public/skdn?year=${yearNum}&month=${monthNum}`);
+        const res = await fetch(`/api/public/skdn?year=${yearNum}&month=${monthNum}`);
         const json = await res.json();
 
         if (json.data) {

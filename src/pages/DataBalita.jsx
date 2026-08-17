@@ -21,7 +21,7 @@ export const FormPeserta = ({ data, onClose, onSave }) => {
     foto: data?.foto || '',
   });
   const [fotoFile, setFotoFile] = useState(null);
-  const [fotoPreview, setFotoPreview] = useState(data?.foto ? `http://localhost:3001${data.foto}` : null);
+  const [fotoPreview, setFotoPreview] = useState(data?.foto ? `${data.foto}` : null);
   const [uploadingFoto, setUploadingFoto] = useState(false);
 
   const handleChange = (e) => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -42,7 +42,7 @@ export const FormPeserta = ({ data, onClose, onSave }) => {
         const token = localStorage.getItem('smartposyandu_token');
         const formData = new FormData();
         formData.append('foto', fotoFile);
-        const res = await fetch('http://localhost:3001/api/upload/foto-balita', {
+        const res = await fetch('/api/upload/foto-balita', {
           method: 'POST',
           headers: { Authorization: `Bearer ${token}` },
           body: formData,
@@ -344,7 +344,7 @@ const DataBalita = () => {
                     <div className="flex items-center gap-4">
                       {peserta.foto ? (
                         <img
-                          src={`http://localhost:3001${peserta.foto}`}
+                          src={`${peserta.foto}`}
                           alt={peserta.nama_lengkap}
                           className="w-11 h-11 rounded-full object-cover shrink-0 border-2 border-primary/20"
                         />

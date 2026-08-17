@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet, NavLink, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import ScrollToTop from './ScrollToTop';
 
 const AppLayout = () => {
   const { user, profile, appRole, logout } = useAuth();
@@ -27,6 +28,7 @@ const AppLayout = () => {
 
   return (
     <div className="bg-background text-on-background min-h-screen antialiased flex w-full">
+      <ScrollToTop />
       
       {/* DESKTOP LAYOUT */}
       <aside className="hidden lg:flex flex-col h-screen w-72 left-0 top-0 fixed bg-surface-container-low border-r border-outline-variant py-8 px-4 gap-stack-gap z-50">
@@ -95,7 +97,7 @@ const AppLayout = () => {
         </header>
 
         {/* Content Area */}
-        <div className="flex-1 overflow-y-auto app-scrollbar">
+        <div className="flex-1">
           <Outlet />
         </div>
       </main>

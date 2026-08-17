@@ -152,7 +152,7 @@ const DashboardOrangTua = () => {
             <div className="flex items-center gap-4 mb-4">
               <div className="w-16 h-16 rounded-full bg-primary-container text-primary flex items-center justify-center font-bold text-2xl shrink-0 shadow-inner overflow-hidden">
                 {child.foto
-                  ? <img src={`http://localhost:3001${child.foto}`} className="w-full h-full object-cover" alt="" />
+                  ? <img src={`${child.foto}`} className="w-full h-full object-cover" alt="" />
                   : child.nama_lengkap?.charAt(0).toUpperCase()}
               </div>
               <div className="flex-1 min-w-0">
