@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background rounded rect -->
+  <rect width="512" height="512" rx="112" fill="#006a40"/>
+  <!-- Inner subtle gradient overlay -->
+  <rect width="512" height="512" rx="112" fill="url(#grad)" opacity="0.3"/>
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#006a40;stop-opacity:0" />
+    </linearGradient>
+  </defs>
+  <!-- Decorative circle top-right -->
+  <circle cx="420" cy="100" r="80" fill="#ffffff" opacity="0.07"/>
+  <!-- Decorative circle bottom-left -->
+  <circle cx="90" cy="420" r="110" fill="#ffffff" opacity="0.05"/>
+  <!-- Heart / health symbol -->
+  <path d="M256 340 C256 340 140 268 140 196 C140 163 166 140 198 140 C222 140 242 155 256 172 C270 155 290 140 314 140 C346 140 372 163 372 196 C372 268 256 340 256 340Z" fill="#ffffff" opacity="0.95"/>
+  <!-- SP Text below heart -->
+  <text x="256" y="430" font-family="Arial, sans-serif" font-size="80" font-weight="900" fill="#ffffff" text-anchor="middle" opacity="0.9" letter-spacing="-2">SP</text>
+</svg>
