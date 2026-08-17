@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  body {
+    font-family: 'Atkinson Hyperlegible Next', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .app-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .app-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .app-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(0, 106, 64, 0.15);
+    border-radius: 9999px;
+  }
+  .app-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 106, 64, 0.3);
+  }
+}
