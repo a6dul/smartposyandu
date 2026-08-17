@@ -32,32 +32,40 @@ const Login = () => {
   };
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center p-6 text-on-background py-16">
-      <div className="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-on-primary mb-6 shadow-md">
-        <span className="material-symbols-outlined text-[64px]">health_and_safety</span>
+    <div className="flex-1 flex flex-col items-center justify-center p-4 relative text-on-background min-h-screen">
+      {/* Tombol Kembali ke Beranda */}
+      <Link to="/" className="absolute top-4 left-4 sm:top-6 sm:left-6 flex items-center gap-2 text-primary font-bold hover:bg-primary/10 px-4 py-2 rounded-full transition-colors z-10">
+        <span className="material-symbols-outlined text-[20px]">arrow_back</span>
+        <span className="hidden sm:inline">Kembali</span>
+      </Link>
+
+      {/* Header / Logo (Dirampingkan) */}
+      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary flex items-center justify-center text-on-primary mb-4 shadow-md mt-10 sm:mt-0">
+        <span className="material-symbols-outlined text-[40px] sm:text-[48px]">health_and_safety</span>
       </div>
-      <h1 className="text-headline-lg font-bold text-primary mb-2 text-center">SmartPosyandu</h1>
-      <p className="text-body-md text-on-surface-variant mb-10 text-center max-w-sm">
-        Sistem pencatatan terpadu untuk kader kesehatan dan orang tua balita.
+      <h1 className="text-headline-sm sm:text-headline-md font-bold text-primary mb-1 text-center">SmartPosyandu</h1>
+      <p className="text-body-sm sm:text-body-md text-on-surface-variant mb-6 text-center max-w-sm px-4">
+        Sistem pencatatan terpadu untuk kader dan orang tua balita.
       </p>
 
-      <div className="w-full max-w-md bg-surface-container-lowest rounded-2xl p-8 shadow-sm border border-outline-variant">
-        <h2 className="text-headline-md font-bold mb-6 text-center text-on-surface">Masuk ke Akun</h2>
+      {/* Box Form Login */}
+      <div className="w-full max-w-md bg-surface-container-lowest rounded-2xl p-6 sm:p-8 shadow-sm border border-outline-variant">
+        <h2 className="text-title-lg font-bold mb-5 text-center text-on-surface">Masuk ke Akun</h2>
 
         {error && (
-          <div className="bg-error-container text-on-error-container p-4 rounded-xl mb-6 text-sm font-medium flex items-start gap-2">
-            <span className="material-symbols-outlined shrink-0">error</span>
+          <div className="bg-error-container text-on-error-container p-3 rounded-xl mb-5 text-sm font-medium flex items-start gap-2">
+            <span className="material-symbols-outlined shrink-0 text-[18px]">error</span>
             <span>{error}</span>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <div>
-            <label className="block text-label-lg font-bold text-on-surface mb-2">Email</label>
+            <label className="block text-label-md font-bold text-on-surface mb-1.5">Email</label>
             <input
               type="email"
               required
-              className="w-full h-14 bg-surface px-4 rounded-xl border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+              className="w-full h-12 bg-surface px-4 rounded-xl border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-sm"
               placeholder="Masukkan email Anda"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -65,11 +73,11 @@ const Login = () => {
           </div>
 
           <div>
-            <label className="block text-label-lg font-bold text-on-surface mb-2">Password</label>
+            <label className="block text-label-md font-bold text-on-surface mb-1.5">Password</label>
             <input
               type="password"
               required
-              className="w-full h-14 bg-surface px-4 rounded-xl border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+              className="w-full h-12 bg-surface px-4 rounded-xl border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-sm"
               placeholder="Masukkan password Anda"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -79,65 +87,50 @@ const Login = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full h-[56px] bg-primary text-on-primary font-bold text-[16px] rounded-xl hover:bg-primary/90 active:scale-[0.98] transition-all shadow-sm flex items-center justify-center gap-2 mt-4 disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full h-12 bg-primary text-on-primary font-bold text-sm rounded-xl hover:bg-primary/90 active:scale-[0.98] transition-all shadow-sm flex items-center justify-center gap-2 mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
           >
             {loading ? (
-              <span className="material-symbols-outlined animate-spin">progress_activity</span>
+              <span className="material-symbols-outlined animate-spin text-[20px]">progress_activity</span>
             ) : (
               <>
-                <span className="material-symbols-outlined">login</span>
+                <span className="material-symbols-outlined text-[20px]">login</span>
                 Masuk
               </>
             )}
           </button>
         </form>
 
-        {/* --- TOMBOL AKSES CEPAT UNTUK DEMO OFFLINE --- */}
-        <div className="mt-8 pt-6 border-t border-outline-variant/60">
-          <p className="text-xs font-bold text-on-surface-variant uppercase tracking-wider text-center mb-3">
-            ⚡ Akses Cepat Demo (1-Klik Offline)
+        {/* --- TOMBOL AKSES CEPAT (Dirampingkan) --- */}
+        <div className="mt-6 pt-5 border-t border-outline-variant/60">
+          <p className="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider text-center mb-2">
+            ⚡ Akses Cepat Demo
           </p>
           <div className="flex flex-col gap-2">
             <button
               type="button"
-              onClick={() => { setEmail('kader@smartposyandu.id'); setPassword('123456'); }}
-              className="w-full h-11 px-3 bg-primary-container/20 hover:bg-primary-container/40 text-primary border border-primary/20 rounded-xl font-medium text-xs flex items-center justify-between transition-all"
+              onClick={() => { setEmail('admin@smartposyandu.id'); setPassword('password'); }}
+              className="w-full h-9 px-3 bg-secondary-container/20 hover:bg-secondary-container/40 text-secondary border border-secondary/20 rounded-lg font-medium text-[11px] flex items-center justify-between transition-all"
             >
-              <span className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-[18px]">medical_services</span>
-                <span>Demo Kader Posyandu</span>
-              </span>
-              <span className="text-[10px] bg-primary/10 px-2 py-0.5 rounded-full font-bold">Kader</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => { setEmail('admin@smartposyandu.id'); setPassword('123456'); }}
-              className="w-full h-11 px-3 bg-secondary-container/20 hover:bg-secondary-container/40 text-secondary border border-secondary/20 rounded-xl font-medium text-xs flex items-center justify-between transition-all"
-            >
-              <span className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-[18px]">admin_panel_settings</span>
+              <span className="flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-[16px]">admin_panel_settings</span>
                 <span>Demo Administrator</span>
               </span>
-              <span className="text-[10px] bg-secondary/10 px-2 py-0.5 rounded-full font-bold">Admin</span>
             </button>
-
             <button
               type="button"
-              onClick={() => { setEmail('orangtua@smartposyandu.id'); setPassword('123456'); }}
-              className="w-full h-11 px-3 bg-surface-container-high hover:bg-surface-container-highest text-on-surface border border-outline-variant rounded-xl font-medium text-xs flex items-center justify-between transition-all"
+              onClick={() => { setEmail('kader@smartposyandu.id'); setPassword('password'); }}
+              className="w-full h-9 px-3 bg-primary-container/20 hover:bg-primary-container/40 text-primary border border-primary/20 rounded-lg font-medium text-[11px] flex items-center justify-between transition-all"
             >
-              <span className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-[18px]">family_restroom</span>
-                <span>Demo Orang Tua Balita</span>
+              <span className="flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-[16px]">medical_services</span>
+                <span>Demo Kader Posyandu</span>
               </span>
-              <span className="text-[10px] bg-outline-variant/40 px-2 py-0.5 rounded-full font-bold">Ortu</span>
             </button>
           </div>
         </div>
 
-        <div className="mt-6 pt-4 border-t border-outline-variant/60 text-center">
-          <p className="text-body-md text-on-surface-variant">
+        <div className="mt-5 pt-4 border-t border-outline-variant/60 text-center">
+          <p className="text-body-sm text-on-surface-variant">
             Belum punya akun?{' '}
             <Link to="/register" className="text-primary font-bold hover:underline">
               Daftar di sini
