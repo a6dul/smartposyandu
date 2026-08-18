@@ -164,16 +164,16 @@ const Login = () => {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Email Input */}
+            {/* Email / Username Input */}
             <div className="space-y-1.5">
-              <label className="block text-sm font-bold text-on-surface">Alamat Email</label>
+              <label className="block text-sm font-bold text-on-surface">Username / Email</label>
               <div className="relative">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant text-[20px]">mail</span>
                 <input
-                  type="email"
+                  type="text"
                   required
                   className="w-full h-13 bg-surface-container-lowest border border-outline-variant rounded-2xl pl-12 pr-4 text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/15 outline-none transition-all"
-                  placeholder="kader@posyandu.id"
+                  placeholder="Contoh: nurhasanah"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />

@@ -12,8 +12,8 @@ router.post('/login', async (req, res) => {
   if (!email || !password) {
     return res.status(400).json({ error: 'Email dan password wajib diisi.' });
   }
-  if (typeof email !== 'string' || email.length > 150 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-    return res.status(400).json({ error: 'Format email tidak valid.' });
+  if (typeof email !== 'string' || email.length > 150) {
+    return res.status(400).json({ error: 'Format input tidak valid.' });
   }
   if (typeof password !== 'string' || password.length > 128) {
     return res.status(400).json({ error: 'Password tidak valid.' });
