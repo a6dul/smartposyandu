@@ -17,7 +17,7 @@ const AppLayout = () => {
     { to: '/dashboard/data-balita', icon: 'child_care', label: 'Data Balita', roles: ['administrator', 'kader'] },
     { to: '/dashboard/ibu-hamil', icon: 'pregnant_woman', label: 'Ibu Hamil', roles: ['administrator', 'kader'] },
     { to: '/dashboard/ibu-menyusui', icon: 'breastfeeding', label: 'Ibu Menyusui', roles: ['administrator', 'kader'] },
-    { to: '/dashboard/penimbangan', icon: 'scale', label: 'Penimbangan', roles: ['administrator', 'kader'], isPrimary: true },
+    { to: '/dashboard/penimbangan', icon: 'scale', label: 'Penimbangan', roles: ['administrator', 'kader'] },
     { to: '/dashboard/riwayat', icon: 'history', label: 'Riwayat', roles: ['administrator', 'kader', 'orang_tua'] },
     { to: '/dashboard/laporan', icon: 'analytics', label: 'Laporan', roles: ['administrator', 'kader'] },
     { to: '/dashboard/users', icon: 'group', label: 'Users', roles: ['administrator'] },
@@ -89,6 +89,13 @@ const AppLayout = () => {
             <button className="w-[44px] h-[44px] flex items-center justify-center rounded-full hover:bg-surface-container-high active:scale-95 transition-all text-on-surface-variant relative">
               <span className="material-symbols-outlined text-[24px]">notifications</span>
               <span className="absolute top-2 right-2 w-2 h-2 bg-error rounded-full ring-2 ring-surface"></span>
+            </button>
+            <button 
+              onClick={handleLogout}
+              className="lg:hidden w-[44px] h-[44px] flex items-center justify-center rounded-full hover:bg-error/10 active:scale-95 transition-all text-error"
+              title="Keluar"
+            >
+              <span className="material-symbols-outlined text-[24px]">logout</span>
             </button>
             <div className="w-[40px] h-[40px] rounded-full overflow-hidden border-2 border-primary cursor-pointer hover:scale-105 transition-transform" onClick={() => navigate('/dashboard/profile')} title="Profil Saya">
               <img className="w-full h-full object-cover" alt="Profil Pengguna" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMF4SUB6qon-ujRpeBT38CJQHHpBY0N_4VG_lD-Umc5GTdEUBqo7z6-RV7pnKjhx9xtM9BMigXW20LRZ4ZC-Ha-hSexrNMbxVpHMEzCpPztXkbPLrZJ_dtIM6eCIt07ygyvSeNOTG5tMjpNXFYnTQkjNbR55Pw539DCT2nwW4zE1GRXgr4BnsVZ450XkNlYKGL9KSeKWKmaeLIvcwU-bcCr-oLqkZx4QwOQs3RM8Cus20EgWsOHfUF3sUwbCnJw8EM-oqiyCBjIgI"/>
