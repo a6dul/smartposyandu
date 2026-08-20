@@ -23,8 +23,16 @@ const verifyToken = (req, res, next) => {
   }
 };
 
+const checkDemoRestriction = (req, res, next) => {
+  if (req.user && req.user.email && req.user.email.endsWith('@demo.com')) {
+    return res.status(403).json({ error: 'Akun demo hanya dapat melihat data (Read-Only). Tidak diizinkan mengubah sistem.' });
+  }
+  next();
+};
+
 module.exports = {
   verifyToken,
+  checkDemoRestriction,
   JWT_SECRET,
   JWT_EXPIRES,
   BCRYPT_ROUNDS

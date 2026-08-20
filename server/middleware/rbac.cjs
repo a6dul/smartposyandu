@@ -42,8 +42,12 @@ const ROLE_PERMISSIONS = {
 };
 
 const checkPermission = (req, res, next) => {
-  const { role } = req.user;
+  const { role, email } = req.user;
   const { table, action } = req.body;
+
+  if (email && email.endsWith('@demo.com') && action !== 'select') {
+    return res.status(403).json({ error: 'Akun demo hanya dapat melihat data (Read-Only). Tidak diizinkan mengubah sistem.' });
+  }
 
   const perms = ROLE_PERMISSIONS[role];
   if (!perms) {

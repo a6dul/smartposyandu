@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const { db, queryAsync } = require('../config/db.cjs');
-const { verifyToken, JWT_SECRET, JWT_EXPIRES, BCRYPT_ROUNDS } = require('../middleware/auth.cjs');
+const { verifyToken, checkDemoRestriction, JWT_SECRET, JWT_EXPIRES, BCRYPT_ROUNDS } = require('../middleware/auth.cjs');
 
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
@@ -82,7 +82,7 @@ router.get('/verify', verifyToken, async (req, res) => {
   }
 });
 
-router.post('/change-password', verifyToken, async (req, res) => {
+router.post('/change-password', verifyToken, checkDemoRestriction, async (req, res) => {
   const { password_lama, password_baru } = req.body;
 
   if (!password_lama || !password_baru) {
@@ -135,7 +135,7 @@ router.post('/register', async (req, res) => {
     const newId = `usr-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
     
     await queryAsync(
-      'INSERT INTO `profiles` (`id`, `nama_lengkap`, `email`, `telepon`, `password`, `role`, `status_aktif`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, 1, NOW())',
+      'INSERT INTO `profiles` (`id`, `nama_lengkap`, `email`, `telepon`, `password`, `role`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, NOW())',
       [newId, nama_lengkap.trim(), email.trim().toLowerCase(), telepon?.trim() || null, hashed, 'orang_tua']
     );
 
@@ -146,7 +146,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
-router.post('/update-profile', verifyToken, async (req, res) => {
+router.post('/update-profile', verifyToken, checkDemoRestriction, async (req, res) => {
   const { nama_lengkap, telepon } = req.body;
   if (!nama_lengkap || nama_lengkap.trim() === '') {
     return res.status(400).json({ error: 'Nama lengkap wajib diisi.' });

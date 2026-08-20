@@ -33,10 +33,10 @@ const Login = () => {
   const fillDemo = (role) => {
     if (role === 'admin') {
       setEmail('admin@smartposyandu.id');
-      setPassword('password');
+      setPassword('demo123');
     } else {
       setEmail('kader@smartposyandu.id');
-      setPassword('password');
+      setPassword('demo123');
     }
   };
 
@@ -141,15 +141,15 @@ const Login = () => {
           <span className="hidden sm:inline">Beranda</span>
         </Link>
 
-        <div className="w-full max-w-md space-y-8">
+        <div className="w-full max-w-md space-y-5">
           {/* Header Form */}
-          <div className="text-center space-y-2">
+          <div className="text-center space-y-1">
             {/* Logo kecil (mobile only) */}
-            <div className="w-14 h-14 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-primary/25 lg:hidden">
-              <span className="material-symbols-outlined text-on-primary text-[30px]">health_and_safety</span>
+            <div className="w-11 h-11 bg-primary rounded-xl flex items-center justify-center mx-auto mb-2 shadow-lg shadow-primary/25 lg:hidden">
+              <span className="material-symbols-outlined text-on-primary text-[24px]">health_and_safety</span>
             </div>
-            <h2 className="text-3xl font-black text-on-surface tracking-tight">Selamat Datang</h2>
-            <p className="text-on-surface-variant text-sm font-medium">
+            <h2 className="text-2xl font-black text-on-surface tracking-tight">Selamat Datang</h2>
+            <p className="text-on-surface-variant text-xs font-medium">
               Masuk ke akun SmartPosyandu Anda untuk melanjutkan.
             </p>
           </div>
@@ -163,16 +163,16 @@ const Login = () => {
           )}
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-3">
             {/* Email / Username Input */}
-            <div className="space-y-1.5">
-              <label className="block text-sm font-bold text-on-surface">Username / Email</label>
+            <div className="space-y-1">
+              <label className="block text-xs font-bold text-on-surface">Username / Email</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant text-[20px]">mail</span>
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant text-[18px]">mail</span>
                 <input
                   type="text"
                   required
-                  className="w-full h-13 bg-surface-container-lowest border border-outline-variant rounded-2xl pl-12 pr-4 text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/15 outline-none transition-all"
+                  className="w-full h-11 bg-surface-container-lowest border border-outline-variant rounded-xl pl-10 pr-4 text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/15 outline-none transition-all"
                   placeholder="Contoh: nurhasanah"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -181,14 +181,14 @@ const Login = () => {
             </div>
 
             {/* Password Input */}
-            <div className="space-y-1.5">
-              <label className="block text-sm font-bold text-on-surface">Password</label>
+            <div className="space-y-1">
+              <label className="block text-xs font-bold text-on-surface">Password</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant text-[20px]">lock</span>
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant text-[18px]">lock</span>
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
-                  className="w-full h-13 bg-surface-container-lowest border border-outline-variant rounded-2xl pl-12 pr-12 text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/15 outline-none transition-all"
+                  className="w-full h-11 bg-surface-container-lowest border border-outline-variant rounded-xl pl-10 pr-11 text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/15 outline-none transition-all"
                   placeholder="Password Anda"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -196,9 +196,9 @@ const Login = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors"
                 >
-                  <span className="material-symbols-outlined text-[20px]">
+                  <span className="material-symbols-outlined text-[18px]">
                     {showPassword ? 'visibility_off' : 'visibility'}
                   </span>
                 </button>
@@ -209,7 +209,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full h-13 bg-primary text-on-primary font-bold text-sm rounded-2xl hover:bg-primary/90 active:scale-[0.98] transition-all shadow-lg shadow-primary/25 flex items-center justify-center gap-2 mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full h-11 bg-primary text-on-primary font-bold text-sm rounded-xl hover:bg-primary/90 active:scale-[0.98] transition-all shadow-lg shadow-primary/25 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <span className="material-symbols-outlined animate-spin text-[20px]">progress_activity</span>

@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { verifyToken } = require('../middleware/auth.cjs');
+const { verifyToken, checkDemoRestriction } = require('../middleware/auth.cjs');
 const { upload } = require('../config/multer.cjs');
 
-router.post('/foto-balita', verifyToken, upload.single('foto'), async (req, res) => {
+router.post('/foto-balita', verifyToken, checkDemoRestriction, upload.single('foto'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ error: 'Tidak ada file yang diunggah.' });

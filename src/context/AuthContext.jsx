@@ -80,10 +80,12 @@ export const AuthProvider = ({ children }) => {
       
       return data;
     } catch (err) {
-      if (err.response && err.response.data && err.response.data.error) {
-        throw new Error(err.response.data.error);
-      }
-      throw err;
+      const msg =
+        err?.response?.data?.error ||
+        err?.response?.data?.message ||
+        (err?.message && err.message !== 'undefined' ? err.message : null) ||
+        'Email/username atau password salah.';
+      throw new Error(msg);
     }
   };
 
@@ -99,10 +101,12 @@ export const AuthProvider = ({ children }) => {
       if (response.data.error) throw new Error(response.data.error);
       return response.data;
     } catch (err) {
-      if (err.response && err.response.data && err.response.data.error) {
-        throw new Error(err.response.data.error);
-      }
-      throw err;
+      const msg =
+        err?.response?.data?.error ||
+        err?.response?.data?.message ||
+        (err?.message && err.message !== 'undefined' ? err.message : null) ||
+        'Terjadi kesalahan saat pendaftaran.';
+      throw new Error(msg);
     }
   };
 
