@@ -177,11 +177,13 @@ const DetailBalita = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             { label: 'Status Gizi Terakhir', value: riwayat.length > 0 ? riwayat[0].status_gizi : 'Belum Ditimbang', isHighlight: true },
+            { label: 'BB Terakhir', value: riwayat.length > 0 ? `${riwayat[0].berat_badan} kg` : '-' },
+            { label: 'PB/TB Terakhir', value: riwayat.length > 0 ? `${riwayat[0].tinggi_badan} cm` : '-' },
+            { label: 'LK Terakhir', value: riwayat.length > 0 && riwayat[0].lingkar_kepala ? `${riwayat[0].lingkar_kepala} cm` : '-' },
             { label: 'Tgl Lahir', value: peserta.tanggal_lahir ? new Date(peserta.tanggal_lahir).toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'}) : '-' },
             { label: 'Usia', value: getUmur(peserta.tanggal_lahir) },
             { label: 'Nama Ibu', value: peserta.nama_ibu || '-' },
             { label: 'Nama Ayah', value: peserta.nama_ayah || '-' },
-            { label: 'No. HP', value: peserta.no_hp || '-' },
             { label: 'Alamat', value: peserta.alamat || '-' },
           ].map(item => (
             <div key={item.label} className={`rounded-xl p-4 ${
@@ -247,23 +249,34 @@ const DetailBalita = () => {
           ) : (
             <div className="space-y-3 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
               {riwayat.map(r => (
-                <div key={r.id} className="flex justify-between items-center bg-surface hover:bg-surface-container-low transition-colors p-4 rounded-xl border border-outline-variant">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center shrink-0">
-                      <span className="material-symbols-outlined text-on-surface-variant">calendar_month</span>
+                <div key={r.id} className="flex flex-col bg-surface hover:bg-surface-container-low transition-colors p-4 rounded-xl border border-outline-variant gap-2">
+                  <div className="flex justify-between items-start">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center shrink-0">
+                        <span className="material-symbols-outlined text-on-surface-variant text-[18px]">calendar_month</span>
+                      </div>
+                      <div>
+                        <p className="font-bold text-on-surface text-sm">{new Date(r.tanggal_ukur).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+                        <p className="text-xs text-on-surface-variant mt-0.5">
+                          BB: {r.berat_badan} kg &nbsp;|&nbsp; TB: {r.tinggi_badan} cm
+                          {r.lingkar_kepala ? ` | LK: ${r.lingkar_kepala} cm` : ''}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-bold text-on-surface">{new Date(r.tanggal_ukur).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
-                      <p className="text-sm text-on-surface-variant font-medium mt-0.5">BB: {r.berat_badan} kg &nbsp;|&nbsp; TB: {r.tinggi_badan} cm</p>
+                    <div className={`px-2.5 py-1 rounded-full text-[11px] font-bold text-white shadow-sm shrink-0 ${
+                      r.status_gizi === 'Baik' ? 'bg-green-600' : 
+                      r.status_gizi === 'Buruk' ? 'bg-red-600' : 
+                      'bg-orange-500'
+                    }`}>
+                      {r.status_gizi || '-'}
                     </div>
                   </div>
-                  <div className={`px-3 py-1.5 rounded-full text-xs font-bold text-white shadow-sm shrink-0 ${
-                    r.status_gizi === 'Baik' ? 'bg-green-600' : 
-                    r.status_gizi === 'Buruk' ? 'bg-red-600' : 
-                    'bg-orange-500'
-                  }`}>
-                    {r.status_gizi || '-'}
-                  </div>
+                  {r.imunisasi && (
+                    <div className="flex items-center gap-1.5 ml-13 pl-13">
+                      <span className="material-symbols-outlined text-primary text-[14px]">vaccines</span>
+                      <span className="text-xs font-semibold text-primary bg-primary/8 px-2 py-0.5 rounded-full">{r.imunisasi}</span>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

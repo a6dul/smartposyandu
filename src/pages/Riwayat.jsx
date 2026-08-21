@@ -41,6 +41,7 @@ const DetailRiwayat = ({ item, historyData }) => {
         {[
           { label: 'Berat Badan', value: `${item.berat_badan} kg` },
           { label: 'Tinggi Badan', value: `${item.tinggi_badan} cm` },
+          { label: 'Lingkar Kepala', value: item.lingkar_kepala ? `${item.lingkar_kepala} cm` : '-' },
           { label: 'Status Gizi', value: item.status_gizi || 'Baik' },
           { label: 'Usia', value: getUmur(item.balita?.tanggal_lahir) },
         ].map(d => (
@@ -50,6 +51,15 @@ const DetailRiwayat = ({ item, historyData }) => {
           </div>
         ))}
       </div>
+      {item.imunisasi && (
+        <div className="p-4 bg-primary/5 rounded-xl border border-primary/20 flex items-center gap-3">
+          <span className="material-symbols-outlined text-primary text-[22px]">vaccines</span>
+          <div>
+            <p className="text-sm font-bold text-primary mb-0.5">Imunisasi Diberikan</p>
+            <p className="text-sm text-on-surface font-semibold">{item.imunisasi}</p>
+          </div>
+        </div>
+      )}
       {item.keterangan && (
         <div className="p-4 bg-primary-container/10 rounded-xl border border-primary/20">
           <p className="text-sm font-bold text-primary mb-1">Catatan Kader</p>

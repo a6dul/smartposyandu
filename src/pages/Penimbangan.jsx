@@ -4,17 +4,33 @@ import api from '../lib/api';
 import { useAuth } from '../context/AuthContext';
 import { hitungUmurBulan, calculateStatusGizi } from '../utils/giziCalculator';
 
+const VAKSIN_LIST = [
+  { id: 'BCG',      label: 'BCG',       dosis: ['BCG'] },
+  { id: 'Polio',    label: 'Polio',     dosis: ['POL 1', 'POL 2', 'POL 3', 'POL 4'] },
+  { id: 'DPT',      label: 'DPT',       dosis: ['DPT 1', 'DPT 2', 'DPT 3'] },
+  { id: 'HB',       label: 'HB',        dosis: ['HB 0', 'HB 1', 'HB 2', 'HB 3'] },
+  { id: 'PCV',      label: 'PCV',       dosis: ['PCV 1', 'PCV 2', 'PCV 3'] },
+  { id: 'RV',       label: 'RV',        dosis: ['RV 1', 'RV 2', 'RV 3'] },
+  { id: 'Campak',   label: 'Campak/MR', dosis: ['Campak', 'MR'] },
+  { id: 'Lainnya',  label: 'Lainnya',   dosis: [] },
+];
+
 const Penimbangan = () => {
   const { logAudit } = useAuth();
   const [balitaList, setBalitaList] = useState([]);
   const [searchBalita, setSearchBalita] = useState('');
   const [form, setForm] = useState({
     id_balita: '',
+    tanggal_ukur: new Date().toISOString().split('T')[0],
     berat_badan: '',
     tinggi_badan: '',
+    lingkar_kepala: '',
     status_gizi: '',
     catatan: '',
   });
+  // imunisasiSelected: { [vaksinId]: string dosis yang dipilih }
+  const [imunisasiSelected, setImunisasiSelected] = useState({});
+  const [lainnyaText, setLainnyaText] = useState('');
   const [toast, setToast] = useState(null);
   const [loading, setLoading] = useState(false);
   const [sudahTimbangIds, setSudahTimbangIds] = useState(new Set());
@@ -124,6 +140,37 @@ const Penimbangan = () => {
     setTimeout(() => setToast(null), 3000);
   };
 
+  const handleVaksinToggle = (vaksinId) => {
+    setImunisasiSelected(prev => {
+      const next = { ...prev };
+      if (next[vaksinId] !== undefined) {
+        delete next[vaksinId];
+      } else {
+        const vaksin = VAKSIN_LIST.find(v => v.id === vaksinId);
+        next[vaksinId] = vaksin.dosis.length > 0 ? vaksin.dosis[0] : '';
+      }
+      return next;
+    });
+  };
+
+  const handleDosisChange = (vaksinId, dosis) => {
+    setImunisasiSelected(prev => ({ ...prev, [vaksinId]: dosis }));
+  };
+
+  const getImunisasiString = () => {
+    const parts = [];
+    VAKSIN_LIST.forEach(v => {
+      if (imunisasiSelected[v.id] !== undefined) {
+        if (v.id === 'Lainnya') {
+          if (lainnyaText.trim()) parts.push(lainnyaText.trim());
+        } else {
+          parts.push(imunisasiSelected[v.id]);
+        }
+      }
+    });
+    return parts.join(', ');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -131,13 +178,16 @@ const Penimbangan = () => {
       const selectedBalita = balitaList.find(b => b.id === form.id_balita);
       const namaBalita = selectedBalita ? selectedBalita.nama_lengkap : 'Balita';
 
+      const imunisasiStr = getImunisasiString();
       const payload = {
         id_balita: form.id_balita,
-        tanggal_ukur: new Date().toISOString().split('T')[0],
+        tanggal_ukur: form.tanggal_ukur,
         berat_badan: parseFloat(form.berat_badan) || 0,
         tinggi_badan: parseFloat(form.tinggi_badan) || 0,
+        lingkar_kepala: parseFloat(form.lingkar_kepala) || null,
         status_gizi: form.status_gizi,
-        keterangan: form.catatan,
+        imunisasi: imunisasiStr || null,
+        keterangan: form.catatan || null,
       };
 
       const res = await api.post('/query', {
@@ -152,7 +202,9 @@ const Penimbangan = () => {
       logAudit('CREATE', 'Penimbangan', `Input penimbangan balita: ${namaBalita} (${form.berat_badan}kg, ${form.tinggi_badan}cm)`);
 
       // Reset form
-      setForm({ id_balita: '', berat_badan: '', tinggi_badan: '', status_gizi: '', catatan: '' });
+      setForm({ id_balita: '', tanggal_ukur: new Date().toISOString().split('T')[0], berat_badan: '', tinggi_badan: '', lingkar_kepala: '', status_gizi: '', catatan: '' });
+      setImunisasiSelected({});
+      setLainnyaText('');
       setComboSearch('');
       // Update daftar sudah timbang (tandai balita ini sudah timbang)
       setSudahTimbangIds(prev => new Set([...prev, form.id_balita]));
@@ -250,6 +302,22 @@ const Penimbangan = () => {
             </div>
           </div>
 
+          {/* Tanggal Pelayanan */}
+          <div className="flex flex-col gap-2">
+            <label className="text-xs font-semibold text-on-surface px-1">Tanggal Pelayanan *</label>
+            <div className="relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">calendar_today</span>
+              <input
+                name="tanggal_ukur"
+                type="date"
+                required
+                value={form.tanggal_ukur}
+                onChange={handleChange}
+                className="w-full h-12 pl-12 pr-4 bg-surface rounded-xl border-2 border-outline-variant focus:border-secondary focus:ring-0 text-sm transition-all"
+              />
+            </div>
+          </div>
+
           <div className="grid grid-cols-2 gap-4 lg:gap-8">
             <div className="flex flex-col gap-2">
               <label className="text-[14px] lg:text-label-lg font-semibold text-on-surface px-1">Berat Badan (kg) *</label>
@@ -288,6 +356,24 @@ const Penimbangan = () => {
             </div>
           </div>
 
+          {/* Lingkar Kepala */}
+          <div className="flex flex-col gap-2">
+            <label className="text-xs font-semibold text-on-surface px-1">Lingkar Kepala (cm)</label>
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">radio_button_unchecked</span>
+              <input
+                name="lingkar_kepala"
+                type="number"
+                step="0.1"
+                placeholder="0.0"
+                value={form.lingkar_kepala}
+                onChange={handleChange}
+                className="w-full h-12 pl-10 pr-10 bg-surface rounded-xl border-2 border-outline-variant focus:border-secondary focus:ring-0 text-sm transition-all"
+              />
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm font-bold">cm</span>
+            </div>
+          </div>
+
           <div className="flex flex-col gap-2">
             <label className="text-xs font-semibold text-on-surface px-1">Status Gizi *</label>
             <div className="relative">
@@ -306,6 +392,66 @@ const Penimbangan = () => {
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline pointer-events-none text-[20px]">auto_awesome</span>
             </div>
+          </div>
+
+          {/* Imunisasi Multi-Select */}
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-2 px-1">
+              <span className="material-symbols-outlined text-primary text-[20px]">vaccines</span>
+              <label className="text-xs font-semibold text-on-surface">Imunisasi Diberikan</label>
+              {Object.keys(imunisasiSelected).length > 0 && (
+                <span className="ml-auto text-[11px] bg-primary/10 text-primary font-bold px-2 py-0.5 rounded-full">
+                  {getImunisasiString()}
+                </span>
+              )}
+            </div>
+            <div className="bg-surface border-2 border-outline-variant rounded-xl p-3 flex flex-col gap-2">
+              {VAKSIN_LIST.map(vaksin => {
+                const isChecked = imunisasiSelected[vaksin.id] !== undefined;
+                return (
+                  <div key={vaksin.id} className={`flex items-center gap-3 p-2 rounded-lg transition-colors ${isChecked ? 'bg-primary/8' : 'hover:bg-surface-container'}`}>
+                    <button
+                      type="button"
+                      onClick={() => handleVaksinToggle(vaksin.id)}
+                      className={`w-5 h-5 rounded flex items-center justify-center border-2 flex-shrink-0 transition-all ${
+                        isChecked ? 'bg-primary border-primary' : 'border-outline-variant bg-surface'
+                      }`}
+                    >
+                      {isChecked && <span className="material-symbols-outlined text-white text-[14px]">check</span>}
+                    </button>
+                    <span
+                      onClick={() => handleVaksinToggle(vaksin.id)}
+                      className={`text-sm font-semibold cursor-pointer select-none flex-1 ${isChecked ? 'text-primary' : 'text-on-surface'}`}
+                    >
+                      {vaksin.label}
+                    </span>
+                    {isChecked && vaksin.dosis.length > 0 && (
+                      <select
+                        value={imunisasiSelected[vaksin.id]}
+                        onChange={e => handleDosisChange(vaksin.id, e.target.value)}
+                        className="h-8 px-2 pr-6 bg-surface-container rounded-lg border border-outline-variant text-sm font-bold text-primary focus:outline-none focus:border-primary"
+                      >
+                        {vaksin.dosis.map(d => (
+                          <option key={d} value={d}>{d}</option>
+                        ))}
+                      </select>
+                    )}
+                    {isChecked && vaksin.id === 'Lainnya' && (
+                      <input
+                        type="text"
+                        placeholder="Tulis imunisasi..."
+                        value={lainnyaText}
+                        onChange={e => setLainnyaText(e.target.value)}
+                        className="h-8 px-3 bg-surface-container rounded-lg border border-outline-variant text-sm focus:outline-none focus:border-primary flex-1"
+                      />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            {Object.keys(imunisasiSelected).length === 0 && (
+              <p className="text-xs text-on-surface-variant px-1">Tidak ada imunisasi? Biarkan semua tidak tercentang.</p>
+            )}
           </div>
 
           <div className="flex flex-col gap-2">
