@@ -24,6 +24,8 @@ const AppLayout = () => {
     { to: '/dashboard/settings', icon: 'settings', label: 'Pengaturan', roles: ['administrator'] },
   ];
 
+  const panduan = { href: '/Panduan_Penggunaan_SmartPosyandu_v1.0.pdf', icon: 'menu_book', label: 'Panduan' };
+
   const visibleLinks = navLinks.filter(link => link.roles.includes(appRole));
 
   return (
@@ -59,6 +61,17 @@ const AppLayout = () => {
               <span className="text-label-lg">{link.label}</span>
             </NavLink>
           ))}
+
+          {/* Panduan - link eksternal ke PDF */}
+          <a
+            href={panduan.href}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container transition-colors rounded-xl"
+          >
+            <span className="material-symbols-outlined">{panduan.icon}</span>
+            <span className="text-label-lg">{panduan.label}</span>
+          </a>
         </nav>
 
         <button 
@@ -143,6 +156,17 @@ const AppLayout = () => {
             </NavLink>
           );
         })}
+
+        {/* Panduan - link eksternal ke PDF */}
+        <a
+          href={panduan.href}
+          target="_blank"
+          rel="noreferrer"
+          className="flex flex-col items-center justify-center text-on-surface-variant py-2 hover:bg-surface-variant/20 rounded-xl px-2.5 transition-all"
+        >
+          <span className="material-symbols-outlined text-[24px]">{panduan.icon}</span>
+          <span className="text-[11px] font-semibold max-[380px]:hidden">{panduan.label}</span>
+        </a>
       </nav>
 
     </div>

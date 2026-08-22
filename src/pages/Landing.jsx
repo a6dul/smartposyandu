@@ -135,10 +135,15 @@ const Landing = () => {
               </Link>
             )}
 
-            <button className="w-full sm:w-auto h-14 px-8 rounded-full bg-surface-container-low text-on-surface border border-outline-variant font-bold text-lg flex items-center justify-center gap-2 hover:bg-surface-container-high transition-all active:scale-95 group">
-              <span className="material-symbols-outlined group-hover:translate-y-0.5 transition-transform text-primary text-[20px]">cloud_download</span>
-              Pasang Aplikasi (PWA)
-            </button>
+            <a
+              href="/Panduan_Penggunaan_SmartPosyandu_v1.0.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="w-full sm:w-auto h-14 px-8 rounded-full bg-surface-container-low text-on-surface border border-outline-variant font-bold text-lg flex items-center justify-center gap-2 hover:bg-surface-container-high transition-all active:scale-95 group"
+            >
+              <span className="material-symbols-outlined group-hover:scale-110 transition-transform text-primary text-[20px]">menu_book</span>
+              Unduh Panduan
+            </a>
           </div>
         </div>
 
