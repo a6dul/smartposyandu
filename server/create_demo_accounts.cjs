@@ -11,15 +11,29 @@ async function createDemoAccounts() {
 
   try {
     const hashed = await bcrypt.hash('demo123', 10);
+    
+    // Cek apakah kolom status_aktif ada
+    const tableInfo = await queryAsync("SHOW COLUMNS FROM `profiles` LIKE 'status_aktif'");
+    const hasStatusAktif = tableInfo.length > 0;
+
     for (const d of demos) {
       // Cek apakah sudah ada
       const existing = await queryAsync('SELECT id FROM profiles WHERE email = ?', [d.email]);
       if (existing.length === 0) {
         const newId = `usr-demo-${d.role}-${Date.now()}`;
-        await queryAsync(
-          'INSERT INTO `profiles` (`id`, `nama_lengkap`, `email`, `password`, `role`, `status_aktif`, `created_at`) VALUES (?, ?, ?, ?, ?, 1, NOW())',
-          [newId, d.nama, d.email, hashed, d.role]
-        );
+        
+        if (hasStatusAktif) {
+          await queryAsync(
+            'INSERT INTO `profiles` (`id`, `nama_lengkap`, `email`, `password`, `role`, `status_aktif`, `created_at`) VALUES (?, ?, ?, ?, ?, 1, NOW())',
+            [newId, d.nama, d.email, hashed, d.role]
+          );
+        } else {
+          await queryAsync(
+            'INSERT INTO `profiles` (`id`, `nama_lengkap`, `email`, `password`, `role`, `created_at`) VALUES (?, ?, ?, ?, ?, NOW())',
+            [newId, d.nama, d.email, hashed, d.role]
+          );
+        }
+        
         console.log(`✅ Akun demo berhasil dibuat: ${d.email} | Role: ${d.role} | Password: demo123`);
       } else {
         console.log(`⚠️ Akun demo sudah ada: ${d.email}`);
