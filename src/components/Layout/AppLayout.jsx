@@ -24,7 +24,7 @@ const AppLayout = () => {
     { to: '/dashboard/settings', icon: 'settings', label: 'Pengaturan', roles: ['administrator'] },
   ];
 
-  const panduan = { href: '/Panduan_Penggunaan_SmartPosyandu_v1.0.pdf', icon: 'menu_book', label: 'Panduan' };
+  const panduan = { href: '/Buku_Panduan_SmartPosyandu_2026_FINAL_v1.4.pdf', icon: 'menu_book', label: 'Panduan' };
 
   const visibleLinks = navLinks.filter(link => link.roles.includes(appRole));
 
