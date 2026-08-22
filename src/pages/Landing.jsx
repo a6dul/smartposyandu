@@ -136,7 +136,7 @@ const Landing = () => {
             )}
 
             <a
-              href="/Panduan_Penggunaan_SmartPosyandu_v1.0.pdf"
+              href="/Buku_Panduan_SmartPosyandu.pdf"
               target="_blank"
               rel="noreferrer"
               className="w-full sm:w-auto h-14 px-8 rounded-full bg-surface-container-low text-on-surface border border-outline-variant font-bold text-lg flex items-center justify-center gap-2 hover:bg-surface-container-high transition-all active:scale-95 group"
